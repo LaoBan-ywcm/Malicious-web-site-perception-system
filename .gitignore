@@ -1,0 +1,10 @@
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+node_modules
+venv
+package-lock.json
+.DS_Store
