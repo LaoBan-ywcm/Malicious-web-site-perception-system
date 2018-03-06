@@ -5,7 +5,7 @@ import { Input, Button } from 'antd';
 const Search = Input.Search;
 
 
-class Header extends Component {
+class InputSearch extends Component {
   constructor(props) {
     super(props);
 
@@ -14,15 +14,14 @@ class Header extends Component {
     };
     this.onSearch = this.onSearch.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.fetchAPI = this.fetchAPI.bind(this);
   }
 
-  onSearch(value) {
+  async onSearch(value) {
     console.log(this.state)
-    this.fetchAPI(this.state.inputValue)
-    this.setState({
-      inputValue: ''
-    });
+    // const _data = await this.fetchAPI(this.state.inputValue);
+
+    this.props.history.push({ pathname:'/report', state:this.state })
+    this.state = {};
   }
 
   onChange(event) {
@@ -31,15 +30,11 @@ class Header extends Component {
     });
   }
 
-  fetchAPI(inputUrl) {
-    fetch(`/verification?url=${inputUrl}`)
-      .then(response => response.json())
-      .then(data => console.log(data))
-  }
+
 
   render() {
     return (
-      <div id="header" className={style.header}>
+      <div id="search" className={style.search}>
         <Search
           placeholder="www.baidu.com"
           enterButton="检测"
@@ -52,4 +47,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default InputSearch;

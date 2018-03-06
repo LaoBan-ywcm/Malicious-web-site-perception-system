@@ -2,8 +2,8 @@
 '''
     Author: qiuqi
     Date:   2018-02-28 15:31:16
-    Last Modified by:   qiuqi
-    Last Modified time: 2018-03-01 16:59:13
+    Last Modified by:   LaoBan-ywcm
+    Last Modified time: 2018-03-02 10:13:52
     请求virustotalAPI数据
 '''
 import requests
@@ -148,11 +148,11 @@ class Service(object):
 
 
 
-def main():
+# def main():
 
-    service = Service('www.sinna.com')
-    data_reports = service.handle_data_reports('1db0ad7dbcec0676710ea0eaacd35d5e471d3e11944d53bcbd31f0cbd11bce31-1519847248')
+#     service = Service('www.sinna.com')
+#     data_reports = service.handle_data_reports('1db0ad7dbcec0676710ea0eaacd35d5e471d3e11944d53bcbd31f0cbd11bce31-1519847248')
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

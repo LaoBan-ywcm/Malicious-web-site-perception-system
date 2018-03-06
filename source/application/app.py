@@ -2,8 +2,8 @@
 '''
     Author: qiuqi
     Date:   2018-02-28 14:17:08
-    Last Modified by:   qiuqi
-    Last Modified time: 2018-03-01 17:00:21
+    Last Modified by:   LaoBan-ywcm
+    Last Modified time: 2018-03-05 17:39:12
 '''
 import time
 import json
@@ -12,13 +12,16 @@ import json
 from flask import jsonify, render_template, request
 from index import app
 from utils.virusTotal import Service
+from utils.ip_adress import get_ip_address
 
 
 @app.route('/verification', methods=['GET'])
 def verification():
     url = request.args.get("url")
+    ip = get_ip_address(url)
     service = Service(url)
     data_scan = service.handle_data_scan()
+
     if data_scan['code'] == 1:
         scan_id = data_scan['scan_id']
         print(scan_id)
@@ -36,14 +39,10 @@ def verification():
             'code': -1
         }
 
-    return jsonify({'result': data_reports})
-
-# @app.route('/hello', methods=['GET'])
-# def hello():
-#     service = Service(www.baidu.com)
-#     data_reports = service.handle_data()
-#     print(data_reports)
-#     return jsonify({'result': data_reports})
+    return jsonify({
+            'virusTotal_message': data_reports,
+            'ip': ip
+        })
 
 
 @app.route('/', methods=['GET'])
