@@ -1,7 +1,7 @@
 import style from './style.css';
 import React, { Component } from 'react';
 
-import { Input, Button } from 'antd';
+import { Input, Button, Icon } from 'antd';
 const Search = Input.Search;
 
 
@@ -34,14 +34,16 @@ class InputSearch extends Component {
 
   render() {
     return (
-      <div id="search" className={style.search}>
-        <Search
+      <div className={style.search}>
+        <input
+          className={style.search_input}
           placeholder="www.baidu.com"
-          enterButton="检测"
+          enterButton
           value={ this.state.inputValue }
           onSearch = { (value) => this.onSearch(value) }
           onChange = { (event) => this.onChange(event) }
         />
+        <Icon type="search" />
       </div>
     );
   }

@@ -1,0 +1,20 @@
+/*
+* @Author: LaoBan-ywcm
+* @Date:   2018-03-06 11:17:25
+* @Last Modified by:   LaoBan-ywcm
+* @Last Modified time: 2018-03-06 14:31:14
+*/
+.header_title {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 130px;
+    font-size: 40px;
+}
+.header_des {
+    text-align: center;
+    margin: 20px auto;
+    color: #747474;
+    font-size: 14px;
+    width: 500px;
+}

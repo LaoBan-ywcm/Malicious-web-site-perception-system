@@ -34,19 +34,26 @@ class Report extends Component {
         <h2>检测报告</h2>
         {
           this.state.d ? (
-              <div>
-                <p>ip:{this.state.d.ip}</p>
-                <p>网站状态:{this.state.d.virusTotal_message.state? (<span>安全</span>) : (<span>危险</span>)}</p>
-                <p>检测过的软件个数:{this.state.d.virusTotal_message.software_sum}</p>
-                <p>检测为危险的软件个数:{this.state.d.virusTotal_message.danger_sum}</p>
-                <p>检测为安全的软件个数:{this.state.d.virusTotal_message.security_sum}</p>
-                <ul>
-                  <p>检测为危险的软件列表:{this.state.d.virusTotal_message.danger_software.map((i) => <li key={i}>{i}</li>)}</p>
-                </ul>
-                <ul>
-                  <p>检测为安全的软件列表:{this.state.d.virusTotal_message.security_software.map((i) => <li key={i}>{i}</li>)}</p>
-                </ul>
-              </div>
+              this.state.d.virusTotal_message.code == -1 ? (
+                  <div>
+                    <p>ip:查询不到</p>
+                    <p>ip:{this.state.d.virusTotal_message.message}</p>
+                  </div>
+                ):(
+                  <div>
+                    <p>ip:{this.state.d.ip}</p>
+                    <p>网站状态:{this.state.d.virusTotal_message.state? (<span>安全</span>) : (<span>危险</span>)}</p>
+                    <p>检测过的软件个数:{this.state.d.virusTotal_message.software_sum}</p>
+                    <p>检测为危险的软件个数:{this.state.d.virusTotal_message.danger_sum}</p>
+                    <p>检测为安全的软件个数:{this.state.d.virusTotal_message.security_sum}</p>
+                    <ul>
+                      <p>检测为危险的软件列表:{this.state.d.virusTotal_message.danger_software.map((i) => <li key={i}>{i}</li>)}</p>
+                    </ul>
+                    <ul>
+                      <p>检测为安全的软件列表:{this.state.d.virusTotal_message.security_software.map((i) => <li key={i}>{i}</li>)}</p>
+                    </ul>
+                  </div>
+                )
             ): (
               <h3>正在检测...</h3>
             )
