@@ -31,7 +31,11 @@ module.exports = {
             test:/\.css$/,              //style-loader和css-loader
             loader:"style-loader!css-loader?modules",
             exclude:/node_modules/
-        },]
+        },{
+           // 小于8KB的图片使用base64内联
+           test: /\.(png|jpg)$/,
+           loader: 'url-loader?limit=8192'
+       }]
     },
     plugins:[                           //插件
         new HtmlWebpackPlugin({         //html-webpack-plugin

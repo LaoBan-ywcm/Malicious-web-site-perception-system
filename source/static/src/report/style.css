@@ -2,5 +2,78 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-03-02 15:01:16
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-03-02 15:01:32
+* @Last Modified time: 2018-04-22 14:09:37
 */
+.detection {
+    text-align: left;
+    padding-top: 70px;
+}
+.headerInfo {
+    text-align: left;
+    margin-left: 150px;
+    display: inline-block;
+    width: 54%;
+}
+.icon {
+    display: inline-block;
+    margin: 20px;
+    vertical-align: top;
+}
+.iconStr {
+    display: inline-block;
+    text-align: left;
+    margin-left: 20px;
+    line-height: 2;
+}
+.deteNum {
+    font-size: 20px;
+    font-weight: bolder;
+}
+.deteTag {
+    display: inline-block;
+    width: 160px;
+}
+.tabContent {
+    text-align: center;
+}
+.tabTitle {
+    text-align: left;
+    margin-top: 30px;
+}
+.tabTitle > div:nth-child(1) {
+    padding-left: 165px;
+}
+.listDiv {
+    text-align: left;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+.list {
+    border-bottom: 1px solid #D8D8D8;
+    line-height: 3;
+    font-weight: bolder;
+}
+.listContent {
+    display: inline-block;
+    width:84%;
+    padding-left: 80px;
+}
+.map {
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    vertical-align: top;
+}
+.mapImg {
+    width: 210px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 1.5s;
+}
+.mapImg:hover {
+    transform: scale(1.1);
+}
+.mapInfo {
+    font-size: 20px;
+    font-weight: bolder;
+}

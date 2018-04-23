@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 15:31:16
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-03-06 11:03:41
+    Last Modified time: 2018-04-21 10:49:22
     请求virustotalAPI数据
 '''
 import requests
@@ -125,6 +125,8 @@ class Service(object):
 
             result = {
                 'code': 1,
+                'scan_date': data['scan_date'],
+                'url': data['url'],
                 'software_sum': software_sum,
                 'security_software': security,
                 'danger_software': danger,

@@ -34,16 +34,18 @@ class InputSearch extends Component {
 
   render() {
     return (
-      <div className={style.search}>
-        <input
-          className={style.search_input}
-          placeholder="www.baidu.com"
-          enterButton
-          value={ this.state.inputValue }
-          onSearch = { (value) => this.onSearch(value) }
-          onChange = { (event) => this.onChange(event) }
-        />
-        <Icon type="search" />
+      <div>
+        <h1 className={style.header_title}>恶意网站态势感知</h1>
+        <p className={style.header_des}>分析可疑网址以检测病毒、蠕虫和木马等各种恶意软件。</p>
+        <div className={style.search}>
+          <Search
+            placeholder="www.baidu.com"
+            enterButton
+            value={ this.state.inputValue }
+            onSearch = { (value) => this.onSearch(value) }
+            onChange = { (event) => this.onChange(event) }
+          />
+        </div>
       </div>
     );
   }
