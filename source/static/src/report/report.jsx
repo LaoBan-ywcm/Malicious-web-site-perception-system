@@ -6,37 +6,58 @@ import mapImg from '../img/map.png'
 class Report extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      d: {
+        ip: 0,
+        virusTotal_message: {
+          code: 1,
+          danger_sum: 0,
+          url: '',
+          scan_date: '',
+          security_software: [],
+          danger_software: [],
+        },
+      },
+      modal: this.onloading(),
+    };
 
     this.fetchAPI = this.fetchAPI.bind(this);
     this.onloading = this.onloading.bind(this);
     this.mapClick = this.mapClick.bind(this);
   }
 
-  async componentWillMount() {
-    const modal = this.onloading();
+  componentDidMount() {
     console.log(this.props.location.state.inputValue)
-    const result_data = await this.fetchAPI(this.props.location.state.inputValue)
-    this.setState({
-      d:result_data
-    })
-    modal.destroy();
-    console.log(this.state)
+    const result_data = this.fetchAPI(this.props.location.state.inputValue)
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
+    this.state.modal.destroy();
   }
 
   async fetchAPI(inputUrl) {
     let _data = '';
-    const data = await fetch(`/verification?url=${inputUrl}`)
+    console.log(inputUrl)
+    const data = await fetch(`/verification?url=${inputUrl}`, {
+      mode: 'cors',
+    })
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         _data = data;
+        console.log(_data)
+        this.setState({
+          d:_data,
+        })
+      })
+      .catch(error => {
+        console.log(error);
       })
       return _data;
   }
 
   mapClick() {
-    this.props.history.push({ pathname:'/maps', state:this.state })
+    this.props.history.push({ pathname:'/maps', state:this.state.d })
   }
 
   // 等待验证数据返回的modal
@@ -100,7 +121,7 @@ class Report extends Component {
                     <Tabs  className={style.tabTitle} defaultActiveKey="1" tabPosition="top">
                         <TabPane className={style.tabContent} tab={<span><Icon type="check-square-o" style={{ fontSize: 15, color: '#62bb53' }}/>检测为安全的引擎</span>} key="1">
                           <div className={style.listDiv}>
-                            {this.state.d.virusTotal_message.security_software.map((i) => 
+                            {this.state.d.virusTotal_message.security_software.map((i) =>
                               <li className={style.list} key={i}>
                                 <span className={style.listContent}>{i}</span>
                                 <span>
@@ -111,7 +132,7 @@ class Report extends Component {
                         </TabPane>
                         <TabPane className={style.tabContent} tab={<span><Icon type="close-square-o" style={{ fontSize: 15, color: '#d74948' }}/>检测为危险的引擎</span>} key="2">
                           <div className={style.listDiv}>
-                            {this.state.d.virusTotal_message.danger_software.map((i) => 
+                            {this.state.d.virusTotal_message.danger_software.map((i) =>
                               <li className={style.list} key={i}>
                                 <span className={style.listContent}>{i}</span>
                                 <span>

@@ -16,7 +16,7 @@ class InputSearch extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  async onSearch(value) {
+  onSearch(value) {
     console.log(this.state)
     // const _data = await this.fetchAPI(this.state.inputValue);
 

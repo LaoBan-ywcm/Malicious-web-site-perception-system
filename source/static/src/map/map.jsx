@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import style from './style.css'
 
-// 引入 ECharts 主模块
-import echarts from 'echarts/lib/echarts';
-// 引入柱状图
-import  'echarts/lib/chart/bar';
-// 引入提示框和标题组件
-import 'echarts/lib/component/tooltip';
-import 'echarts/lib/component/title';
+import ReactEcharts from 'echarts-for-react'
+// import 'echarts/map/js/world.js'
+import 'echarts/map/js/china.js'
 
+import getOption from './config.js'
 
 
 
@@ -16,33 +13,53 @@ class Maps extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {};
-  }
-  componentDidMount() {
-      // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(document.getElementById('main'));
-      // 绘制图表
-      myChart.setOption({
-          title: { text: 'ECharts 入门示例' },
-          tooltip: {},
-          xAxis: {
-              data: ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-          },
-          yAxis: {},
-          series: [{
-              name: '销量',
-              type: 'bar',
-              data: [5, 20, 36, 10, 10, 20]
-          }]
-      });
+    this.state = {
+      option: {},
+      wHeight: 0,
+    }
   }
 
+  async componentWillMount() {
+    console.log(window.innerHeight);
+    this.setState({
+      wHeight: window.innerHeight,
+    });
+    const data = await this.fetchAPI()
+    console.log(data);
+    let oData = getOption();
+    oData['series'][0]['data'] = data;
+    this.setState({
+      option: oData,
+      wHeight: window.innerHeight,
+    })
+  }
+
+  async fetchAPI(inputUrl) {
+    let _data = '';
+    const data = await fetch(`/mapData`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        _data = data;
+      })
+      return _data;
+  }
+
+
+
   render() {
+    console.log(this.state);
+    const divstyle = {
+      height: this.state.wHeight,
+    }
+
     return (
-      <div>
-        <h1>地图页面</h1>
-        <div id="main" style={{ width: 400, height: 400 }}></div>
-      </div>
+        <div style={divstyle}>
+          <ReactEcharts
+            option={this.state.option}
+            style={{height: '100%', width: '100%'}}
+            className='react_for_echarts' />
+        </div>
     );
   }
 }

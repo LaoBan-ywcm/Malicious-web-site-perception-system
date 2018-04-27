@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 15:31:16
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-21 10:49:22
+    Last Modified time: 2018-04-27 11:44:40
     请求virustotalAPI数据
 '''
 import requests
@@ -80,6 +80,8 @@ class Service(object):
         '''处理scan接口返回的数据
         '''
         data = self.http_post_scan()
+        print('这是scan-data')
+        print(data)
         # print('scan接口数据：%s' % data.status_code)
         if data != 'error' and data['response_code'] == 1:
             result = {
@@ -111,6 +113,8 @@ class Service(object):
         security = []
         danger = []
         data = self.http_post_reports(scan_id)
+        print('这是reports-data')
+        print(data)
         # print('reports接口数据：%s' % data.status_code)
         if data != 'error' and data['response_code'] == 1:
             software_list = data['scans']
@@ -145,6 +149,7 @@ class Service(object):
                 'code': 0
             }
 
+
         return result
 
 
@@ -153,8 +158,9 @@ class Service(object):
 
 # def main():
 
-#     service = Service('www.sinna.com')
-#     data_reports = service.handle_data_reports('1db0ad7dbcec0676710ea0eaacd35d5e471d3e11944d53bcbd31f0cbd11bce31-1519847248')
+#     service = Service('www.youtube.com')
+#     # data = service.handle_data_scan()
+#     data_reports = service.handle_data_reports('4671ca02d929289d11f8855e109d4df50495f875f82cac91fce9d31742dad7ae-1524729978')
 
 
 # if __name__ == '__main__':
