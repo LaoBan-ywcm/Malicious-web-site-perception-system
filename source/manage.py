@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 14:51:48
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-25 15:16:45
+    Last Modified time: 2018-04-28 16:31:17
 '''
 from flask_script import Manager, Server
 
@@ -20,4 +20,8 @@ manager.add_command("runserver",
 
 
 if __name__ == '__main__':
-    manager.run()
+    app.run(
+            threaded=True,
+            host='127.0.0.1',
+            port=8000,
+        )

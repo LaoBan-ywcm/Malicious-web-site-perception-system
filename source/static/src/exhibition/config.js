@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-22 14:27:23
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-27 16:17:18
+* @Last Modified time: 2018-04-27 17:38:30
 */
 
 export default function getOption() {

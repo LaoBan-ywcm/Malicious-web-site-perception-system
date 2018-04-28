@@ -3,7 +3,7 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 15:22:18
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-26 18:07:00
+    Last Modified time: 2018-04-28 16:52:00
 '''
 import json
 from application.app import app
@@ -11,6 +11,24 @@ from flask_pymongo import PyMongo
 
 app.config['MONGO_DBNAME'] = 'bishe'
 mongo = PyMongo(app, config_prefix='MONGO')
+
+
+def find_Grade_Data():
+    try:
+        oneGrade = mongo.db.webSite.find({'grade': 1}).count()
+        twoGrade = mongo.db.webSite.find({'grade': 2}).count()
+        threeGrade = mongo.db.webSite.find({'grade': 3}).count()
+        print(oneGrade, twoGrade, threeGrade)
+    except Exception as err:
+        print(err)
+
+    return {
+        'oneGrade': oneGrade,
+        'twoGrade': twoGrade,
+        'threeGrade': threeGrade,
+        'dangerSum': oneGrade + twoGrade + threeGrade,
+        'securitySum': 50,
+    }
 
 def find_DB_Data():
     try:

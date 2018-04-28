@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { Route, Link} from 'react-router-dom'
-import Search from '../search'
+import Exhibition from '../exhibition'
 import Report from '../report'
 import Maps from '../map'
 import style from './style.css'
@@ -23,7 +23,7 @@ class Entrance extends Component {
           <Link to='/report'></Link>
           <Link to='/maps'></Link>
         </div>
-        <Route exact path='/' component={ Search }></Route>
+        <Route exact path='/' component={ Exhibition }></Route>
         <Route path='/report' component={ Report }></Route>
         <Route path='/maps' component={ Maps }></Route>
       </div>

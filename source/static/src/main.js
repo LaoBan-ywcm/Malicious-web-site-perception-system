@@ -4,8 +4,6 @@ import {render} from 'react-dom';
 
 
 import Entrance from './entrance';
-import InputSearch from './search'
-import Report from './report'
 
 render(
     <div>
