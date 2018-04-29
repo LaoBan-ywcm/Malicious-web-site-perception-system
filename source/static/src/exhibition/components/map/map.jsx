@@ -26,7 +26,6 @@ class Map extends Component {
     const _data = data.sort((a, b) => {
       return b['value'][2] - a['value'][2]
     })
-    console.log(_data.slice(0,3));
     return _data.slice(0,3)
   }
 
@@ -39,10 +38,9 @@ class Map extends Component {
         _data = data;
         let oData = getOption();
         const sortData = this.sortMapData(_data);
-        oData['series'][0]['data'] = data;
-        console.log(oData['series'][1]['data'])
-        oData['series'][1]['data'] = sortData;
-        console.log(oData)
+        // oData['series'][0]['data'] = data;
+        // oData['series'][1]['data'] = sortData;
+        console.log(oData);
         this.setState({
           option: oData,
         })

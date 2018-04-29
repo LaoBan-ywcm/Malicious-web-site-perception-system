@@ -1,0 +1,90 @@
+/*
+* @Author: LaoBan-ywcm
+* @Date:   2018-04-29 10:22:39
+* @Last Modified by:   LaoBan-ywcm
+* @Last Modified time: 2018-04-29 16:39:32
+*/
+.searchBox {
+    width: 350px;
+    text-align: right;
+    position: absolute;
+    top: -80px;
+    right: 10px;
+}
+.search {
+    width: 350px;
+    height: 130px;
+    text-align: center;
+    background-color: rgba(21,34,66,0.5);
+}
+.search p{
+    font-size: 21px;
+    color: #fff;
+    margin: 10px 20px;
+    padding-top: 10px;
+    border-bottom: 1px solid #4284b8;
+    text-align: left;
+}
+::-webkit-input-placeholder{
+    color: #594b71;
+    font-size: 18px;
+}
+.search input{
+    width: 80%;
+    background-color: transparent;
+    border: 0px;
+    border-bottom: 1px solid #7adced;
+    font-size: 18px;
+    color: #96ceb0;
+}
+.search input:focus {
+    outline: none;
+    border-bottom: 1px solid #65d1ce;
+    color: #7adced;
+    font-size: 18px;
+}
+.search button{
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    background-color: rgba(70,153,218,0.5);
+    margin-top: 10px;
+    color: #7adced;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+.search button:active {
+    background-color: rgba(18,46,87,0.5);
+}
+.report p{
+    font-size: 21px;
+    color: #fff;
+    margin: 10px;
+    padding-top: 10px;
+    margin-left: 30px;
+    border-bottom: 1px solid #4284b8;
+}
+.bolder {
+    font-weight: bolder;
+}
+.reportList p{
+    font-size: 14px;
+    color: #38a0d6;
+    margin: 10px;
+    padding-top: 25px;
+    margin-left: 30px;
+    border-bottom: 1px solid #4284b8;
+}
+.reportList p span {
+    display: inline-block;
+    width: 135px;
+}
+.report {
+    width: 350px;
+    height: 450px;
+    margin-top: 5px;
+    text-align: left;
+    background-color: rgba(21,34,66,0.5);
+    overflow: scroll;
+}

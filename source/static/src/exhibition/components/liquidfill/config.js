@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-28 11:56:41
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-28 17:13:26
+* @Last Modified time: 2018-04-28 20:25:33
 */
 import 'echarts';
 import './liquidfill.js';
@@ -29,7 +29,16 @@ export default function getOption() {
                         }
                     }
                 }, ],
-                radius: '150',
+                label: {
+                            normal: {
+                                textStyle: {
+                                    fontSize: 28,
+                                },
+                                color: '#db8230'
+                            }
+                        },
+                center: ['50%', '30%'],
+                radius: '105',
                 outline: {
                     show: true,
                     borderDistance: 0,
@@ -53,7 +62,8 @@ export default function getOption() {
                     normal: {
                         opacity: 0.4,
                         shadowBlur: 80,
-                        shadowColor: 'blue'
+                        shadowColor: 'blue',
+                        formatter: '危险网站占比{c}',
                     }
                 },
 

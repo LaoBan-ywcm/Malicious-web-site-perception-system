@@ -1,0 +1,73 @@
+/*
+* @Author: LaoBan-ywcm
+* @Date:   2018-04-28 20:38:25
+* @Last Modified by:   LaoBan-ywcm
+* @Last Modified time: 2018-04-29 16:34:13
+*/
+.cityInfo {
+    width: 335px;
+    height: 310px;
+    overflow: scroll;
+    text-align: left;
+    background-color: rgba(21,34,66,0.5);
+    position: absolute;
+    top: -70px;
+    left: 10px;
+    /* border: 1px solid #5eafe6; */
+}
+.cityInfo p{
+    font-size: 21px;
+    color: #fff;
+    margin: 10px;
+    margin-left: 30px;
+    border-bottom: 1px solid #4284b8;
+}
+.header {
+    text-align: center;
+}
+.header>span{
+    width: 40px;
+    display: inline-block;
+    margin: 10px;
+    color: #96efe5;
+    font-weight: bolder;
+    font-size: 16px;
+    text-align: center;
+}
+.content {
+    text-align: center;
+}
+.city {
+    display: inline-block;
+    color: #38a0d6;
+    font-size: 13px;
+    width: 60px;
+}
+.headerCity {
+    display: inline-block;
+    width: 60px;
+}
+.one {
+    background: #4ba8f2;
+    width: 40px;
+    display: inline-block;
+    margin: 10px;
+}
+.two {
+    background: #4ecbf7;
+    width: 40px;
+    display: inline-block;
+    margin: 10px;
+}
+.three {
+    background: #ca5255;
+    width: 40px;
+    display: inline-block;
+    margin: 10px;
+}
+.sum {
+    background: #fffdfb;
+    width: 40px;
+    display: inline-block;
+    margin: 10px;
+}

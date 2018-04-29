@@ -1,0 +1,15 @@
+/*
+* @Author: LaoBan-ywcm
+* @Date:   2018-04-29 21:44:46
+* @Last Modified by:   LaoBan-ywcm
+* @Last Modified time: 2018-04-29 22:05:49
+*/
+.line {
+    position: absolute;
+    top: 250px;
+    left: 10px;
+    width: 500px;
+    height: 288px;
+    background-color: rgba(21,34,66,0.5);
+
+}

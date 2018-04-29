@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 15:31:16
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-27 11:44:40
+    Last Modified time: 2018-04-29 16:14:23
     请求virustotalAPI数据
 '''
 import requests
@@ -125,7 +125,7 @@ class Service(object):
                 else:
                     danger.append(key)
 
-            state = True if len(security) > len(danger) else False
+            state = '安全' if len(security) > len(danger) else '危险'
 
             result = {
                 'code': 1,

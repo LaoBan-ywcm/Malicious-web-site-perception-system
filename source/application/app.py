@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 14:17:08
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-28 16:50:53
+    Last Modified time: 2018-04-29 21:42:53
 '''
 import time
 import json
@@ -14,7 +14,7 @@ from flask import jsonify, render_template, request
 from index import app
 from utils.virusTotal import Service
 from utils.ip_adress import get_ip_address
-from utils.db import insert_ipAddress, insert_webSite, find_DB_Data, find_Grade_Data
+from utils.db import insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
 from utils.ipLocation import ipLocation
 
 @app.route('/', methods=['GET'])
@@ -30,6 +30,11 @@ def mapData():
 @app.route('/gradeData', methods=['GET'])
 def gradeData():
     data = find_Grade_Data()
+    return jsonify(data)
+
+@app.route('/cityData', methods=['GET'])
+def cityData():
+    data = find_WebSite_Data()
     return jsonify(data)
 
 
@@ -81,10 +86,19 @@ def verification():
 #   'state': True,
 #   'url': u'http://www.taobao.com/'
 # }
-    # 如果是危险网站，存入数据库
-    if data_reports['code']== 1 and (data_reports['security_sum'] > data_reports['danger_sum']):
+    # 如果是危险网站，存入dangerWebSite数据库
+    if data_reports['code']== 1 and ( 3 <= data_reports['danger_sum']):
         print('这是危险网站')
         print(url)
+        grade = 0
+        if data_reports['danger_sum'] < 10:
+            grade = 1
+        elif data_reports['danger_sum'] <20:
+            grade = 2
+        else:
+            grade = 3
+
+        curren_time = time.strftime('%Y-%m-%d', time.localtime())
         # 存入ipAddress表
         if ip_location_data != 'error':
             insertId = insert_ipAddress(ip_location_data)
@@ -94,10 +108,35 @@ def verification():
                 'url': url,
                 'ip': ip,
                 'city': ip_location_data['city'],
+                'state': 'danger',
+                'grade': 3,
+                'date': curren_time,
             }
 
             # 存入webSite表
-            insertId = insert_webSite(webSiteData)
+            insertId = insert_DangerWebSite(webSiteData)
+            print(insertId)
+
+    # 如果是安全网站，存入securityWebSite数据库
+    if data_reports['code']== 1 and ( 2 > data_reports['danger_sum']):
+        print('这是安全网站')
+        print(url)
+
+        curren_time = time.strftime('%Y-%m-%d', time.localtime())
+        # 存入ipAddress表
+        if ip_location_data != 'error':
+            insertId = insert_ipAddress(ip_location_data)
+            print(insertId)
+
+            webSiteData = {
+                'url': url,
+                'ip': ip,
+                'city': ip_location_data['city'],
+                'state': 'security',
+                'date': curren_time,
+            }
+            # 存入webSite表
+            insertId = insert_SecurityWebSite(webSiteData)
             print(insertId)
 
     return jsonify({

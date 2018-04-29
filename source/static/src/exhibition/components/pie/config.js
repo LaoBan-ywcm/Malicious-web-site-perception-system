@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-27 19:06:32
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-28 12:41:00
+* @Last Modified time: 2018-04-28 18:51:01
 */
 
 import echarts from 'echarts';
@@ -22,8 +22,8 @@ export default function getOption() {
             {
                 name: '一级网站',
                 type: 'pie',
-                radius: ['55%', '65%'],
-                center: ['20%', '50%'],
+                radius: ['35%', '45%'],
+                center: ['15%', '30%'],
                 startAngle: 225,
                 color: [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
@@ -50,7 +50,7 @@ export default function getOption() {
                                 formatter: '一级网站',
                                 textStyle: {
                                     color: '#fff',
-                                    fontSize: 20
+                                    fontSize: 16
 
                                 }
                             }
@@ -75,8 +75,8 @@ export default function getOption() {
             {
                 name: ' 二级网站',
                 type: 'pie',
-                radius: ['55%', '65%'],
-                center: ['50%', '50%'],
+                radius: ['35%', '45%'],
+                center: ['45%', '30%'],
                 startAngle: 225,
                 color: [new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
                     offset: 0,
@@ -103,7 +103,7 @@ export default function getOption() {
                                 formatter: '二级网站',
                                 textStyle: {
                                     color: '#fff',
-                                    fontSize: 20
+                                    fontSize: 16
 
                                 }
                             }
@@ -127,8 +127,8 @@ export default function getOption() {
             {
                 name: ' 三级网站',
                 type: 'pie',
-                radius: ['55%', '65%'],
-                center: ['80%', '50%'],
+                radius: ['35%', '45%'],
+                center: ['75%', '30%'],
                 startAngle: 225,
                 labelLine: {
                     normal: {
@@ -159,7 +159,7 @@ export default function getOption() {
                                 formatter: '三级网站',
                                 textStyle: {
                                     color: '#fff',
-                                    fontSize: 20
+                                    fontSize: 16
 
                                 }
                             }
