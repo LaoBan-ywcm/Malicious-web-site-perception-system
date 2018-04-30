@@ -34,13 +34,11 @@ class Map extends Component {
     const data = await fetch(`/mapData`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         _data = data;
         let oData = getOption();
         const sortData = this.sortMapData(_data);
         // oData['series'][0]['data'] = data;
         // oData['series'][1]['data'] = sortData;
-        console.log(oData);
         this.setState({
           option: oData,
         })

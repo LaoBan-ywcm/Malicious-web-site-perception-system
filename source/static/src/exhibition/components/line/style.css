@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-29 21:44:46
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-29 22:05:49
+* @Last Modified time: 2018-04-30 11:47:22
 */
 .line {
     position: absolute;
@@ -12,4 +12,11 @@
     height: 288px;
     background-color: rgba(21,34,66,0.5);
 
+}
+.line p{
+    font-size: 21px;
+    color: #fff;
+    margin: 10px;
+    margin-left: 30px;
+    border-bottom: 1px solid #4284b8;
 }

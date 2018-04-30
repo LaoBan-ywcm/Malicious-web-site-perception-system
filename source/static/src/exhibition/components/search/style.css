@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-29 10:22:39
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-29 16:39:32
+* @Last Modified time: 2018-04-30 15:38:09
 */
 .searchBox {
     width: 350px;
@@ -87,4 +87,9 @@
     text-align: left;
     background-color: rgba(21,34,66,0.5);
     overflow: scroll;
+}
+.report p.error {
+    text-align: center;
+    color: red;
+    border: none;
 }

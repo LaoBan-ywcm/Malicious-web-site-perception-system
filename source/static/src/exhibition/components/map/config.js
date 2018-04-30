@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-22 14:27:23
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-28 22:25:10
+* @Last Modified time: 2018-04-30 11:53:03
 */
 var data = [
      {name: '海门', value: 9},
@@ -479,15 +479,6 @@ export default function getOption() {
                     const data = item['data']['value'][2];
                     return city + '<br />' + '危险网站数量：' + data;
                 },
-            },
-            legend: {
-                orient: 'vertical',
-                y: 'bottom',
-                x:'right',
-                data:['危险网站数量'],
-                textStyle: {
-                    color: '#fff'
-                }
             },
             geo: {
                 map: 'china',

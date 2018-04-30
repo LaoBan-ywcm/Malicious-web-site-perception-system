@@ -25,7 +25,6 @@ class Exhibition extends Component {
   }
 
   componentWillMount() {
-    console.log(window.innerHeight);
     this.setState({
       height: window.innerHeight,
     })
@@ -42,7 +41,6 @@ class Exhibition extends Component {
       height: this.state.height * 0.7 * 0.5,
     }
     // const top = this.state.height / 2 - this.state.height * 0.8 / 2 + 'px';
-    console.log(top);
     const mapStyle = {
       height: this.state.height,
       top: '0px',

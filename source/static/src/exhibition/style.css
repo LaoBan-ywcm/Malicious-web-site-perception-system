@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-02-27 11:12:59
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-28 18:23:46
+* @Last Modified time: 2018-04-30 11:43:07
 */
 .fd {
 }
@@ -12,10 +12,6 @@
     /* background-color: #1b2d54; */
 }
 .logo {
-    /* background-color: #404a59; */
-    display:flex;/*Flex布局*/
-    display: -webkit-flex; /* Safari */
-    align-items:center;/*指定垂直居中*/
 }
 .bar {
     /* background-color: #404a59; */
@@ -36,7 +32,14 @@
 }
 
 .logo > div {
-    margin: 0 auto;
-    text-align: center;
-
+    margin: 40px 10px;
+    text-align: left;
+}
+.logo h1 {
+    font-size: 32px;
+    color: rgba(62,110,171,1);
+}
+.logo p{
+    color: #4aa7f3;
+    font-size: 15px;
 }

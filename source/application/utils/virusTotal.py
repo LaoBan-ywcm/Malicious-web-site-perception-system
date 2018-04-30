@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 15:31:16
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-29 16:14:23
+    Last Modified time: 2018-04-30 15:41:08
     请求virustotalAPI数据
 '''
 import requests
@@ -53,9 +53,7 @@ class Service(object):
         params = self.fmt_url_params_scan()
         try:
             resp = requests.post(self.api_url_scan, data=params)
-            print(resp)
             data = resp.json()
-            print(data)
         except Exception as err:
             print(err)
             data = 'error'
@@ -68,7 +66,6 @@ class Service(object):
         params,headers = self.fmt_url_params_reports(scan_id)
         try:
             resp = requests.post(self.api_url_reports, params=params, headers=headers)
-            print(resp.status_code)
             data = resp.json()
         except Exception as err:
             pprint(err)
@@ -80,8 +77,6 @@ class Service(object):
         '''处理scan接口返回的数据
         '''
         data = self.http_post_scan()
-        print('这是scan-data')
-        print(data)
         # print('scan接口数据：%s' % data.status_code)
         if data != 'error' and data['response_code'] == 1:
             result = {
@@ -113,8 +108,6 @@ class Service(object):
         security = []
         danger = []
         data = self.http_post_reports(scan_id)
-        print('这是reports-data')
-        print(data)
         # print('reports接口数据：%s' % data.status_code)
         if data != 'error' and data['response_code'] == 1:
             software_list = data['scans']

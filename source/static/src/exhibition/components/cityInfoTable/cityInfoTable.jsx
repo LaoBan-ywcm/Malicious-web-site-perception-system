@@ -53,7 +53,7 @@ class CityInfoTable extends Component {
         {
           this.state.cityData.map((data) => {
             return (
-                <div className={style.content}>
+                <div key={data.city} className={style.content}>
                   <span className={style.city} >{data.city}</span>
                   <span className={style.one}>{data.oneGrade}</span>
                   <span className={style.two}>{data.twoGrade}</span>

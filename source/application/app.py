@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 14:17:08
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-29 21:42:53
+    Last Modified time: 2018-04-30 15:38:55
 '''
 import time
 import json
@@ -14,12 +14,18 @@ from flask import jsonify, render_template, request
 from index import app
 from utils.virusTotal import Service
 from utils.ip_adress import get_ip_address
-from utils.db import insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
+from utils.db import find_Danger_Date, insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
 from utils.ipLocation import ipLocation
 
 @app.route('/', methods=['GET'])
 def f():
     return render_template('./index.html')
+
+@app.route('/lineData', methods=['GET'])
+def lineData():
+    data = find_Danger_Date()
+    print(data)
+    return jsonify(data)
 
 @app.route('/mapData', methods=['GET'])
 def mapData():

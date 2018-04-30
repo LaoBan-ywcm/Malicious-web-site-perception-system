@@ -26,7 +26,6 @@ class Pie extends Component {
     const data = await fetch(`/gradeData`)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         _data = data;
         let oData = getOption();
         oData['series'][0]['data'][1]['label']['normal']['formatter'] = '\n' + _data['oneGrade']

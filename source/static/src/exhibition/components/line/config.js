@@ -2,21 +2,12 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-29 21:44:36
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-29 22:47:00
+* @Last Modified time: 2018-04-30 11:52:14
 */
 import echarts from 'echarts';
 
 export default function getOption() {
     return {
-        title: {
-                text: '每日统计',
-                left: '10%',
-                top: '5%',
-                textAlign: 'center',
-                textStyle: {
-                    color: '#fff',
-                }
-            },
             tooltip: {
                 trigger: 'axis',
                 axisPointer: {
@@ -32,7 +23,7 @@ export default function getOption() {
                 extraCssText: 'box-shadow: 0 0 5px rgba(0,0,0,0.3)'
             },
             legend: {
-                right: 20,
+                left: 30,
                 top:20,
                 orient: 'horizontal',
                 data: ['一级','二级','三级'],
@@ -42,7 +33,7 @@ export default function getOption() {
             },
             xAxis: {
                 type: 'category',
-                data: ['00:00','2:00','4:00','6:00','8:00','10:00','12:00','14:00','16:00','18:00','20:00',"22:00"],
+                data: ['00:00','2:00','4:00','6:00','8:00',],
                 boundaryGap: false,
                 splitLine: {
                     show: false,
@@ -68,6 +59,8 @@ export default function getOption() {
             },
             yAxis: {
                 type: 'value',
+                interval: 1,     //会出现负数刻度
+                min: 0,
                 splitLine: {
                     show: false,
                     lineStyle: {
@@ -96,7 +89,7 @@ export default function getOption() {
                 showSymbol: false,
                 symbol: 'circle',
                 symbolSize: 6,
-                data: ['1200', '1400', '1008', '1411', '1026', '1288', '1300', '800', '1100', '1000', '1118', '1322'],
+                data: ['1500', '1400', '108', '1411', '1026', ],
                 areaStyle: {
                     normal: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -125,7 +118,7 @@ export default function getOption() {
                 showSymbol: false,
                 symbol: 'circle',
                 symbolSize: 6,
-                data: ['1200', '1400', '1008', '1411', '1026', '1288', '200', '800', '1100', '1000', '1118', '1322'],
+                data: ['120', '1400', '1008', '1411', '1026',],
                 areaStyle: {
                     normal: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
@@ -155,7 +148,7 @@ export default function getOption() {
                 showSymbol: false,
                 symbol: 'circle',
                 symbolSize: 6,
-                data: ['1200', '1400', '700', '811', '626', '488', '400', '1100', '500', '300', '1998', '822'],
+                data: ['1200', '100', '700', '811', '626',],
                 areaStyle: {
                     normal: {
                         color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{

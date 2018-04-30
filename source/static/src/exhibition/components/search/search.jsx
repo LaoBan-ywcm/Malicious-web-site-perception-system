@@ -19,6 +19,7 @@ class Search extends Component {
           url: 'www.xxx.com',
           state: '未知',
           scan_date: '2000-00-00',
+          code: 1,
         },
       }
     };
@@ -57,7 +58,6 @@ class Search extends Component {
       return _data;
   }
   render() {
-    console.log(this.state);
     return (
       <div className={style.searchBox}>
         <div className={style.search}>
@@ -67,28 +67,36 @@ class Search extends Component {
         </div>
         <div className={style.report}>
           <p>检测报告</p>
-          <div>
-            <Spin spinning={this.state.loading} size="large">
-              <div className={style.reportList}>
-                <p>
-                  <span>网站状态</span>
-                  <span className={style.bolder} >{this.state.virData.virusTotal_message.state}</span>
-                </p>
-                <p>
-                  <span>主机</span>
-                  <span className={style.bolder} >{this.state.virData.virusTotal_message.url}</span>
-                </p>
-                <p>
-                  <span>ip</span>
-                  <span className={style.bolder} >{this.state.virData.ip}</span>
-                </p>
-                <p>
-                  <span>上次检测时间</span>
-                  <span className={style.bolder} >{this.state.virData.virusTotal_message.scan_date}</span>
-                </p>
-              </div>
-            </Spin>
-          </div>
+          {
+            this.state.virData.virusTotal_message.code == -1 ? (
+                <div>
+                  <p className={style.error}>验证失败</p>
+                </div>
+              ):(
+                <div>
+                  <Spin spinning={this.state.loading} size="large">
+                    <div className={style.reportList}>
+                      <p>
+                        <span>网站状态</span>
+                        <span className={style.bolder} >{this.state.virData.virusTotal_message.state}</span>
+                      </p>
+                      <p>
+                        <span>主机</span>
+                        <span className={style.bolder} >{this.state.virData.virusTotal_message.url}</span>
+                      </p>
+                      <p>
+                        <span>ip</span>
+                        <span className={style.bolder} >{this.state.virData.ip}</span>
+                      </p>
+                      <p>
+                        <span>上次检测时间</span>
+                        <span className={style.bolder} >{this.state.virData.virusTotal_message.scan_date}</span>
+                      </p>
+                    </div>
+                  </Spin>
+                </div>
+              )
+          }
         </div>
       </div>
     );

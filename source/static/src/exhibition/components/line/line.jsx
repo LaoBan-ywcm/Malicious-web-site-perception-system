@@ -13,37 +13,44 @@ class Line extends Component {
     this.state = {
       option: getOption(),
     };
-    // this.fetchAPI = this.fetchAPI.bind(this)
+    this.fetchAPI = this.fetchAPI.bind(this)
+  }
+
+  componentWillMount() {
+    this.fetchAPI();
   }
 
 
+  async fetchAPI(inputUrl) {
+    let _data = '';
+    const data = await fetch(`/lineData`, {
+      mode: 'cors',
+    })
+      .then(response => response.json())
+      .then(data => {
+        _data = data;
+        let oData = getOption();
+        oData['xAxis']['data'] = _data['x'];
+        oData['series'][0]['data'] = _data['one'];
+        oData['series'][1]['data'] = _data['two'];
+        oData['series'][2]['data'] = _data['three'];
+        this.setState({
+          option: oData,
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      return _data;
+  }
 
-  // async fetchAPI(inputUrl) {
-  //   let _data = '';
-  //   const data = await fetch(`/verification?url=${inputUrl}`, {
-  //     mode: 'cors',
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       _data = data;
-  //       console.log(_data)
-  //       this.setState({
-  //         virData: _data,
-  //         loading: false,
-  //       })
-  //     })
-  //     .catch(error => {
-  //       console.log(error);
-  //     })
-  //     return _data;
-  // }
   render() {
-    console.log(this.state);
     return (
       <div className={style.line}>
+        <p>网站检测结果汇总</p>
         <ReactEcharts
           option={this.state.option}
-          style={{height: '100%', width: '100%'}}
+          style={{height: '90%', width: '100%'}}
           className='react_for_echarts' />
       </div>
     );

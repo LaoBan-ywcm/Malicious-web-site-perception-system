@@ -3,7 +3,7 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 16:40:28
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-27 11:46:04
+    Last Modified time: 2018-04-30 15:41:10
 '''
 import requests
 import json
@@ -36,8 +36,6 @@ class ipLocation(object):
         try:
             resp = requests.post(self.api_url, data=params)
             data = resp.json()
-            print('这是ip-data')
-            print(data)
             if data['status'] != 0:
                 return 'error'
         except Exception as err:
