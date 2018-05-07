@@ -50,19 +50,21 @@ class CityInfoTable extends Component {
           <span>三级</span>
           <span>总数</span>
         </div>
-        {
-          this.state.cityData.map((data) => {
-            return (
-                <div key={data.city} className={style.content}>
-                  <span className={style.city} >{data.city}</span>
-                  <span className={style.one}>{data.oneGrade}</span>
-                  <span className={style.two}>{data.twoGrade}</span>
-                  <span className={style.three}>{data.threeGrade}</span>
-                  <span className={style.sum}>{data.sum}</span>
-                </div>
-              )
-          })
-        }
+        <div className={style.cc}>
+          {
+            this.state.cityData.map((data) => {
+              return (
+                  <div key={data.city} className={style.content}>
+                    <span className={style.city} >{data.city}</span>
+                    <span className={style.one}>{data.oneGrade}</span>
+                    <span className={style.two}>{data.twoGrade}</span>
+                    <span className={style.three}>{data.threeGrade}</span>
+                    <span className={style.sum}>{data.sum}</span>
+                  </div>
+                )
+            })
+          }
+        </div>
       </div>
     );
   }

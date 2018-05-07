@@ -3,31 +3,44 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 15:22:18
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-30 15:40:28
+    Last Modified time: 2018-05-01 14:06:54
 '''
 import json
 from application.app import app
 from flask_pymongo import PyMongo
 import datetime
+import calendar
 
 app.config['MONGO_DBNAME'] = 'bishe'
 mongo = PyMongo(app, config_prefix='MONGO')
 
+def getLastDayOfLastMonth(monthDate):
+    d = monthDate
+    c = calendar.Calendar()
+
+    year = d.year
+    month = d.month
+
+    if month == 1 :
+        month = 12
+        year -= 1
+    else :
+        month -= 1
+    days = calendar.monthrange(year, month)[1]
+    dad = datetime.datetime(year,month,1).strftime('%Y-%m')
+    return datetime.datetime.strptime(dad, '%Y-%m')
+
 def find_Danger_Date():
     try:
         dateList = mongo.db.dangerWebSite.find({},{'date':1, '_id':0})
-        month = datetime.timedelta(days=31)
+        month = datetime.timedelta(days=30)
         maxs = datetime.datetime.strptime(datetime.datetime.now().strftime('%Y-%m'), '%Y-%m')
         out_data = []
-        # for date in dateList:
-        #     de = datetime.datetime.strptime(date, '%Y-%m')
-        #     print(de)
-        #     if maxs < de:
-        #         maxs = de
         for i in range(1,6):
             out_data.append(maxs.strftime('%Y-%m'))
-            maxs = maxs - month
+            maxs = getLastDayOfLastMonth(maxs)
         out_data.reverse()
+        print(out_data)
 
         webList = list(mongo.db.dangerWebSite.find({},{'_id':0}))
         _outObject = {}

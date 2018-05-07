@@ -47,10 +47,10 @@ class Line extends Component {
   render() {
     return (
       <div className={style.line}>
-        <p>网站检测结果汇总</p>
+        <p>网站检测趋势图</p>
         <ReactEcharts
           option={this.state.option}
-          style={{height: '90%', width: '100%'}}
+          style={{height: '84%', width: '100%'}}
           className='react_for_echarts' />
       </div>
     );

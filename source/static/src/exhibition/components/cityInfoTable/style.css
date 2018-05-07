@@ -2,12 +2,11 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-28 20:38:25
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-29 16:34:13
+* @Last Modified time: 2018-05-07 12:12:55
 */
 .cityInfo {
     width: 335px;
     height: 310px;
-    overflow: scroll;
     text-align: left;
     background-color: rgba(21,34,66,0.5);
     position: absolute;
@@ -21,6 +20,14 @@
     margin: 10px;
     margin-left: 30px;
     border-bottom: 1px solid #4284b8;
+}
+.cc {
+    overflow: auto;
+    height: 200px;
+}
+.cc::-webkit-scrollbar {
+    width: 0px;
+    background-color: #F5F5F5;
 }
 .header {
     text-align: center;
