@@ -46,7 +46,6 @@ class Search extends Component {
       .then(response => response.json())
       .then(data => {
         _data = data;
-        console.log(_data)
         this.setState({
           virData: _data,
           loading: false,

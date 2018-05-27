@@ -3,16 +3,21 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 15:22:18
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-05-27 21:30:33
+    Last Modified time: 2018-05-25 16:56:33
 '''
 import json
-from application.app import app
-from flask_pymongo import PyMongo
+# from application.app import app
+# from flask_pymongo import PyMongo
 import datetime
 import calendar
 
-app.config['MONGO_DBNAME'] = 'bishe'
-mongo = PyMongo(app, config_prefix='MONGO')
+# app.config['MONGO_DBNAME'] = 'bishe'
+# app.config['MONGO_DBNAME'] = 'crawler'
+# mongo = PyMongo(app, config_prefix='MONGO')
+
+from pymongo import MongoClient
+Client = MongoClient()
+db = Client['crawlerData']
 
 def getLastDayOfLastMonth(monthDate):
     d = monthDate
@@ -32,7 +37,7 @@ def getLastDayOfLastMonth(monthDate):
 
 def find_Danger_Date():
     try:
-        dateList = mongo.db.dangerWebSite.find({},{'date':1, '_id':0})
+        dateList = db.dangerWebSite.find({},{'date':1, '_id':0})
         month = datetime.timedelta(days=30)
         maxs = datetime.datetime.strptime(datetime.datetime.now().strftime('%Y-%m'), '%Y-%m')
         out_data = []
@@ -42,7 +47,7 @@ def find_Danger_Date():
         out_data.reverse()
         print(out_data)
 
-        webList = list(mongo.db.dangerWebSite.find({},{'_id':0}))
+        webList = list(db.dangerWebSite.find({},{'_id':0}))
         _outObject = {}
         for data in out_data:
             _outObject[data] = {
@@ -84,7 +89,7 @@ def find_Danger_Date():
 
 def find_security_Data():
     try:
-        sum = mongo.db.securityWebSite.find({}).count()
+        sum = db.securityWebSite.find({}).count()
     except Exception as err:
         print(err)
     return sum
@@ -93,9 +98,9 @@ def find_security_Data():
 def find_Grade_Data():
     try:
         sum = find_security_Data()
-        oneGrade = mongo.db.dangerWebSite.find({'grade': 1}).count()
-        twoGrade = mongo.db.dangerWebSite.find({'grade': 2}).count()
-        threeGrade = mongo.db.dangerWebSite.find({'grade': 3}).count()
+        oneGrade = db.dangerWebSite.find({'grade': 1}).count()
+        twoGrade = db.dangerWebSite.find({'grade': 2}).count()
+        threeGrade = db.dangerWebSite.find({'grade': 3}).count()
     except Exception as err:
         print(err)
 
@@ -113,9 +118,9 @@ def find_WebSite_Data():
         out_data = []
         for ip in ipResult:
             city = ip['name']
-            oneGrade = mongo.db.dangerWebSite.find({"city": city, "grade": 1}).count()
-            twoGrade = mongo.db.dangerWebSite.find({"city": city, "grade": 2}).count()
-            threeGrade = mongo.db.dangerWebSite.find({"city": city, "grade": 3}).count()
+            oneGrade = db.dangerWebSite.find({"city": city, "grade": 1}).count()
+            twoGrade = db.dangerWebSite.find({"city": city, "grade": 2}).count()
+            threeGrade = db.dangerWebSite.find({"city": city, "grade": 3}).count()
             data = {
                 'city': city,
                 'oneGrade': oneGrade,
@@ -132,7 +137,7 @@ def find_WebSite_Data():
 
 def find_DB_Data():
     try:
-        ipResult = mongo.db.ipAddress.find({},{'_id':0, 'by':0})
+        ipResult = db.ipAddress.find({},{'_id':0, 'by':0})
         ipData = list(ipResult)
         out_data = []
         for ip in ipData:
@@ -153,37 +158,38 @@ def find_DB_Data():
 
 def insert_ipAddress(data):
     try:
-        result = mongo.db.ipAddress.find_one({"city": data['city']})
+        result = db.ipAddress.find_one({"city": data['city']})
         if result == None:
-            insertedId = mongo.db.ipAddress.insert_one(data).inserted_id
+            insertedId = db.ipAddress.insert_one(data).inserted_id
         else:
-            mongo.db.ipAddress.update_one({"city": data['city']}, {'$inc': {"value": 1}})
+            db.ipAddress.update_one({"city": data['city']}, {'$inc': {"value": 1}})
 
     except Exception as err:
         print(err)
 
 def insert_ipAddress_security(data):
     try:
-        result = mongo.db.ipAddress.find_one({"city": data['city']})
+        result = db.ipAddress.find_one({"city": data['city']})
         if result == None:
-            insertedId = mongo.db.ipAddress.insert_one(data).inserted_id
+            insertedId = db.ipAddress.insert_one(data).inserted_id
+
     except Exception as err:
         print(err)
 
 def insert_DangerWebSite(data):
     try:
-        result = mongo.db.dangerWebSite.find_one({"url": data['url']})
+        result = db.dangerWebSite.find_one({"url": data['url']})
         if result == None:
-            insertedId = mongo.db.dangerWebSite.insert_one(data).inserted_id
+            insertedId = db.dangerWebSite.insert_one(data).inserted_id
         return result
     except Exception as err:
         print(err)
 
 def insert_SecurityWebSite(data):
     try:
-        result = mongo.db.securityWebSite.find_one({"url": data['url']})
+        result = db.securityWebSite.find_one({"url": data['url']})
         if result == None:
-            insertedId = mongo.db.securityWebSite.insert_one(data).inserted_id
+            insertedId = db.securityWebSite.insert_one(data).inserted_id
             print(insertedId)
         return result
     except Exception as err:

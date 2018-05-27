@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 15:31:16
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-30 15:41:08
+    Last Modified time: 2018-05-27 21:28:25
     请求virustotalAPI数据
 '''
 import requests
@@ -77,6 +77,8 @@ class Service(object):
         '''处理scan接口返回的数据
         '''
         data = self.http_post_scan()
+        print('data')
+        print(data)
         # print('scan接口数据：%s' % data.status_code)
         if data != 'error' and data['response_code'] == 1:
             result = {
@@ -89,7 +91,7 @@ class Service(object):
                 'message': '已经提交，正在审查',
                 'code': 2
             }
-        elif data['response_code'] == -1:
+        elif data != 'error' and data['response_code'] == -1:
             result = {
                 'message': 'url不存在',
                 'code': -1
