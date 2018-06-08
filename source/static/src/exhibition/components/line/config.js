@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-29 21:44:36
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-30 11:52:14
+* @Last Modified time: 2018-05-31 20:54:11
 */
 import echarts from 'echarts';
 
@@ -59,7 +59,7 @@ export default function getOption() {
             },
             yAxis: {
                 type: 'value',
-                interval: 1,     //会出现负数刻度
+                // interval: 10,     //会出现负数刻度
                 min: 0,
                 splitLine: {
                     show: false,

@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 14:17:08
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-05-27 21:48:59
+    Last Modified time: 2018-06-02 23:01:09
 '''
 import time
 import json
@@ -11,14 +11,15 @@ import pprint
 
 
 from utils.virusTotal import Service
-from utils.ip_adress import get_ip_address
-from utils.crawler_db import insert_ipAddress_security, find_Danger_Date, insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
+from utils.ip_adress import get_ip_address, get_ip_IPIP
+from utils.crawler_db import db_have, insert_ipAddress_security, find_Danger_Date, insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
 from utils.ipLocation import ipLocation
 
 
 def verification(url):
     print(url)
-    ip = get_ip_address(url)
+    # ip = get_ip_address(url)
+    ip = get_ip_IPIP(url)
     # 从百度地图获取ip的城市和经纬度
     ip_location = ipLocation(ip)
     # 提取出需要的值
@@ -121,11 +122,17 @@ def main():
         lines = f.readlines()
         for line in lines:
             index = index + 1
+            # if index <= 6407:
+            #     continue
             print('这是第%s个网址%s' % (index, line))
+            print(db_have(line.split('\n')[0]))
             url = line.split('\n')[0]
+            if db_have(url):
+                continue
             data = verification(url)
             pprint.pprint(data)
             time.sleep(17)
+
 
 if __name__ == '__main__':
     main()

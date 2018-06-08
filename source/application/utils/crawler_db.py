@@ -3,7 +3,7 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 15:22:18
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-05-25 16:56:33
+    Last Modified time: 2018-06-03 17:10:19
 '''
 import json
 # from application.app import app
@@ -17,7 +17,22 @@ import calendar
 
 from pymongo import MongoClient
 Client = MongoClient()
-db = Client['crawlerData']
+db = Client['crawler']
+
+def db_have(url):
+    '''对数据进行二次验证，先查找数据中是否存在
+    '''
+    result = False
+    try:
+        data = db.securityWebSite.find({'url': url}).count()
+        _data = db.dangerWebSite.find({'url': url}).count()
+        print(data,_data)
+        result = False if data == 0 and _data == 0 else True
+        # result = False if _data == 0 else True
+    except Exception as err:
+        return True
+    return result
+
 
 def getLastDayOfLastMonth(monthDate):
     d = monthDate

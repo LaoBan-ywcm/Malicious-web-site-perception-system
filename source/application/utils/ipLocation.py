@@ -3,7 +3,7 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 16:40:28
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-04-30 15:41:10
+    Last Modified time: 2018-05-28 10:28:22
 '''
 import requests
 import json
@@ -56,7 +56,7 @@ class ipLocation(object):
                 'city': city,
                 'x': float(x),
                 'y': float(y),
-                'value': 1,
+                'value': 0,
             }
         else:
             return 'error'
@@ -64,7 +64,7 @@ class ipLocation(object):
 
 # def main():
 
-#     service = ipLocation('61.135.169.125')
+#     service = ipLocation('112.124.52.241')
 #     # data = service.get_data()
 #     # print(service.fmt_data())
 #     # print(service.fmt_data())

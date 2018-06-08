@@ -12,6 +12,7 @@ import Liquidfill from './components/liquidfill'
 import CityInfoTable from './components/cityInfoTable'
 import Search from './components/search'
 import Line from './components/line'
+import TotalNumber from './components/totalNumber'
 
 
 class Exhibition extends Component {
@@ -59,7 +60,12 @@ class Exhibition extends Component {
                 <p className={style.header_des}>分析可疑网址以检测病毒、蠕虫和木马等各种恶意软件。</p>
               </div>
             </Col>
-            <Col className={style.bar} span={3} offset={4} style={fdStyle}>
+            <Col className={style.bar} span={3} style={fdStyle}>
+              <div style={fdStyle}>
+                <TotalNumber />
+              </div>
+            </Col>
+            <Col className={style.bar} span={3} offset={1} style={fdStyle}>
               <div style={fdStyle}>
                 <Liquidfill />
               </div>

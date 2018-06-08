@@ -3,7 +3,7 @@
     Author: qiuqi
     Date:   2018-02-28 14:17:08
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-05-27 21:42:51
+    Last Modified time: 2018-06-09 01:07:57
 '''
 import time
 import json
@@ -14,7 +14,7 @@ from flask import jsonify, render_template, request
 from index import app
 from utils.virusTotal import Service
 from utils.ip_adress import get_ip_address
-from utils.db import insert_ipAddress_security, find_Danger_Date, insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
+from utils.db import find_DangerWebsite_virustotal, find_totalNumber, insert_ipAddress_security, find_Danger_Date, insert_ipAddress, insert_DangerWebSite, insert_SecurityWebSite, find_DB_Data, find_Grade_Data, find_WebSite_Data
 from utils.ipLocation import ipLocation
 
 @app.route('/', methods=['GET'])
@@ -24,13 +24,11 @@ def f():
 @app.route('/lineData', methods=['GET'])
 def lineData():
     data = find_Danger_Date()
-    print(data)
     return jsonify(data)
 
 @app.route('/mapData', methods=['GET'])
 def mapData():
     data = find_DB_Data()
-    print(data)
     return jsonify(data)
 
 @app.route('/gradeData', methods=['GET'])
@@ -43,6 +41,10 @@ def cityData():
     data = find_WebSite_Data()
     return jsonify(data)
 
+@app.route('/totalNumber', methods=['GET'])
+def totalNumber():
+    data = find_totalNumber()
+    return jsonify(data)
 
 
 
@@ -80,6 +82,8 @@ def verification():
             'message': '提交检测失败',
             'code': -1
         }
+
+
 
 
 
@@ -149,6 +153,20 @@ def verification():
             # 存入webSite表
             insertId = insert_SecurityWebSite(webSiteData)
             print(insertId)
+
+    print('data_reports')
+    print(data_reports)
+    # 如果dangerWebsite数据库中存在该url
+    result = find_DangerWebsite_virustotal(url)
+    print('search danger')
+    print(result)
+    if result['is_exis'] == 1:
+        data_reports = {
+            'code': 1,
+            'scan_date': result['data']['date'],
+            'state': '危险',
+            'url': result['data']['url']
+        }
 
     return jsonify({
             'virusTotal_message': data_reports,

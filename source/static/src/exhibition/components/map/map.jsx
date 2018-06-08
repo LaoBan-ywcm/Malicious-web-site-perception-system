@@ -37,8 +37,9 @@ class Map extends Component {
         _data = data;
         let oData = getOption();
         const sortData = this.sortMapData(_data);
-        // oData['series'][0]['data'] = data;
-        // oData['series'][1]['data'] = sortData;
+        oData['series'][0]['data'] = _data;
+        oData['series'][1]['data'] = sortData;
+        console.log(oData);
         this.setState({
           option: oData,
         })

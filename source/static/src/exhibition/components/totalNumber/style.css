@@ -1,0 +1,20 @@
+/*
+* @Author: LaoBan-ywcm
+* @Date:   2018-05-31 20:02:46
+* @Last Modified by:   LaoBan-ywcm
+* @Last Modified time: 2018-05-31 20:24:24
+*/
+.totalnumber {
+    padding-top: 24px;
+}
+.describe {
+    text-align: center;
+    font-size: 22px;
+    color: #4aa7f3;
+    margin-bottom: 10px;
+}
+.number {
+    text-align: center;
+    font-size: 26px;
+    color: #7adced;
+}

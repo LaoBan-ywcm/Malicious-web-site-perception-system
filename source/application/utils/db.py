@@ -3,7 +3,7 @@
     Author: LaoBan-ywcm
     Date:   2018-04-25 15:22:18
     Last Modified by:   LaoBan-ywcm
-    Last Modified time: 2018-05-27 21:30:33
+    Last Modified time: 2018-06-09 00:58:56
 '''
 import json
 from application.app import app
@@ -11,7 +11,7 @@ from flask_pymongo import PyMongo
 import datetime
 import calendar
 
-app.config['MONGO_DBNAME'] = 'bishe'
+app.config['MONGO_DBNAME'] = 'crawler'
 mongo = PyMongo(app, config_prefix='MONGO')
 
 def getLastDayOfLastMonth(monthDate):
@@ -81,6 +81,14 @@ def find_Danger_Date():
         print(err)
     return
 
+def find_totalNumber():
+    try:
+        security = mongo.db.securityWebSite.find({}).count()
+        danger = mongo.db.dangerWebSite.find({}).count()
+        sum = security + danger
+    except Exception as err:
+        print(err)
+    return sum
 
 def find_security_Data():
     try:
@@ -141,7 +149,7 @@ def find_DB_Data():
                 'value': [
                     ip['x'],
                     ip['y'],
-                    ip['value'],
+                    ip['value'] * 10,
                 ],
             }
             out_data.append(data)
@@ -188,6 +196,41 @@ def insert_SecurityWebSite(data):
         return result
     except Exception as err:
         print(err)
+
+# 检测前查看dangerWebsite数据表中是否含有该网站
+def find_DangerWebsite_virustotal(url):
+    data = {}
+    if len(url.split('//')) != 1:
+        baseUrl = url.split('//')[1]
+    else:
+        baseUrl = url
+    try:
+        url = 'http://' + baseUrl
+        print(url)
+        result = mongo.db.dangerWebSite.find_one({"url": url})
+        if result == None:
+            url = 'https://' + baseUrl
+            result = mongo.db.dangerWebSite.find_one({"url": url})
+            if result == None:
+                data = {
+                    "is_exis": 0,
+                }
+            else:
+                data = {
+                    "is_exis": 1,
+                    "data": result,
+                }
+        else :
+            data = {
+                "is_exis": 1,
+                "data": result,
+            }
+    except Exception as err:
+        print(err)
+
+    return data
+
+
 
 
 

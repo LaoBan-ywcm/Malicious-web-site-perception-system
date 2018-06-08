@@ -2,7 +2,7 @@
 * @Author: LaoBan-ywcm
 * @Date:   2018-04-22 14:27:23
 * @Last Modified by:   LaoBan-ywcm
-* @Last Modified time: 2018-04-30 11:53:03
+* @Last Modified time: 2018-05-31 21:17:59
 */
 var data = [
      {name: '海门', value: 9},
@@ -534,7 +534,7 @@ export default function getOption() {
                     coordinateSystem: 'geo',
                     data: convertData(data.sort(function (a, b) {
                 return b.value - a.value;
-            }).slice(0, 6)),symbolSize: function (val) {
+            }).slice(0, 3)),symbolSize: function (val) {
                 return val[2] / 10;
             },
                     showEffectOn: 'render',
