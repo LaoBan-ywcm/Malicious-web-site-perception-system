@@ -8,33 +8,33 @@
 ## 安装项目
 
 ```
-    git clone https://github.com/LaoBan-ywcm/Malicious-web-site-perception-system.git  
+git clone https://github.com/LaoBan-ywcm/Malicious-web-site-perception-system.git  
 ```
 
 ## 安装项目依赖
 
 ### 推荐使用virtualenv创建虚拟环境
 
-<<<<<<< HEAD
+
 ```
-    cd Malicious-web-site-perception-system.git  
-    virtualenv venv --python=python2.7 --system-site-packages  
+cd Malicious-web-site-perception-system.git  
+virtualenv venv --python=python2.7 --system-site-packages  
 ```
 
 ### 安装后端依赖
 
 ```
-    source venv/bin/activate  
-    cd source  
-    pip install -r requirements.txt  
+source venv/bin/activate  
+cd source  
+pip install -r requirements.txt  
 ```
 
 ### 安装前端依赖(推荐使用cnpm)
 
 ```
-    cd static  
-    cnpm install  
-    npm start  
+cd static  
+cnpm install  
+npm start  
 ```
 
 ### 启动项目
@@ -42,8 +42,8 @@
 注意：要在启动项目前打开Mongodb服务
 
 ```
-    cd Malicious-web-site-perception-system/source  
-    python manage.py runserver  
+cd Malicious-web-site-perception-system/source  
+python manage.py runserver  
 ```
 
 在浏览器中打开http://127.0.0.1:8000/
