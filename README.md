@@ -17,7 +17,9 @@
 
 `
     cd Malicious-web-site-perception-system.git  
-    virtualenv venv --python=python2.7 --system-site-packages  
+    
+    virtualenv venv --python=python2.7 --system-site-packages    
+    
 `
 
 ### 安装后端依赖
