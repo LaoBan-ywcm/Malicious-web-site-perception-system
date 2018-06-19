@@ -15,6 +15,7 @@
 
 ### 推荐使用virtualenv创建虚拟环境
 
+<<<<<<< HEAD
 ```
     cd Malicious-web-site-perception-system.git  
     virtualenv venv --python=python2.7 --system-site-packages  
